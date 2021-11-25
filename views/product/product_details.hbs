@@ -1,0 +1,54 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    Single Product Details
+  </h3>
+  <div class="card-body">
+    <div id="table_product" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"
+        ><a href="#!" class="text-success"
+          ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
+      ></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Product id:  </th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Grade</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Universe</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Picture Link</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pt-3-half" contenteditable="true" id="product_td_id">{{productDetails.product_id}}</td>
+            <td class="pt-3-half" contenteditable="true">{{productDetails.name}}</td>
+            <td class="pt-3-half" contenteditable="true">{{productDetails.grade}}</td>
+            <td class="pt-3-half" contenteditable="true">{{productDetails.description}}</td>
+            <td class="pt-3-half" contenteditable="true">{{productDetails.universe}}</td>
+            <td class="pt-3-half" contenteditable="true">{{productDetails.price}}</td>
+            <td class="pt-3-half" contenteditable="true">{{productDetails.link_picture}}</td>
+            <td class="table-warning">
+              <span class="table-remove"
+                ><button type="button" class="btn btn-warning btn-rounded btn-sm my-0 edit">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </span>
+            </td>
+            <td class="table-danger">
+              <span class="table-remove"
+                ><button type="button" class="btnRemoveProduct">
+                  <i class="bi-trash"></i>
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Editable table -->
