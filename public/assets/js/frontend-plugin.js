@@ -997,16 +997,73 @@ jQuery(document).ready(function ($) {
 
   //--------------------------------- Delete Product Action -------------------------------------
   function delete_product(){
+    // event listener for remove row putton
     $("#table_product").on('click','.btnRemoveProduct',function(){
       var currentRow=$(this).closest("tr");    
-      var col1=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+       // get current row 1st TD value
+      var col1=currentRow.find("td:eq(0)").text();
       alert("you delete product with id =" + col1);
-      $.get( "product/delete", {product_id: col1});
+      $.post( "/product/delete", {product_id: col1}, function(result){
+        alert("delete product with id =" + col1 + " " + result);
+      });
+    });
+  }
+
+  /// --------------------------- Add Product Action ---------------------------------------------
+  function addProduct(){
+    // event listener
+    $("#add_product_table").on('click','.btn-rounded.edit',function(){
+      
+      // find the row where button is clicked
+      const currentRow = $(this).closest('tr');
+
+      const product_id = currentRow.find("td:eq(0)").text();
+      const name = currentRow.find("td:eq(1)").text();
+      const grade = currentRow.find("td:eq(2)").text();
+      const description = currentRow.find("td:eq(3)").text();
+      const universe = currentRow.find("td:eq(4)").text();
+      const price = currentRow.find("td:eq(5)").text();
+      const link = currentRow.find("td:eq(6)").text();
+
+      alert("you have fill those info: " + product_id + " " + price + " " + link + " " + universe + " " + grade + " " + description);
+      $.post( "/product/add", {product_id, name, grade,description,universe,price,link}, function(result){
+        alert("create product: " + result);
+      });
+
+
+    });
+
+  }
+
+   //--------------------------------- Edit Product Action ---------------------------------------------------------
+   function editProductButton(){
+    // event listener for remove row putton
+    $("#table_product").on('click','.btn-warning.btn-rounded.edit',function(){
+      var currentRow= $(this).closest("tr");
+      // get all value in row
+      const product_id = currentRow.find("td:eq(0)").text();
+      const name = currentRow.find("td:eq(1)").text();
+      const description = currentRow.find("td:eq(3)").text();
+      const universe = currentRow.find("td:eq(4)").text();
+      const price = currentRow.find("td:eq(5)").text();
+      const link = currentRow.find("td:eq(6)").text();
+      const eGrade = currentRow.find("td:eq(2)").text();
+
+
+
+      alert("you are editing product with id= "+ product_id + " and name= "+ name + " grade= "+ eGrade) ;
+
+      $.post( "/product/edit", {product_id, name, eGrade ,description,universe,price,link}, function(result){
+        alert("edit product: " + result);
+        if(result == "success"){
+          location.reload(true);
+        }
+      });
     });
   }
 
   
-  // --------------------------------------------------------
+  // ------------------------------------------------------------------------------------------------------------------
   $(window).scroll(function () {
     tanajil_custom_scrollbar();
   });
@@ -1044,6 +1101,6 @@ jQuery(document).ready(function ($) {
   nexpage_click();
   prevpage_click();
   delete_product();
-
-  
+  addProduct();
+  editProductButton();
 });

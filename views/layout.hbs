@@ -87,13 +87,15 @@
                 </div>
                 <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
                     <div class="block-search-block">
+
+                        <!-- Search bar here /-->
                         <form class="form-search form-search-width-category" action="/product/search" method="POST">
                             <div class="form-content">
                                 <div class="category">
-                                    <select title="cate" data-placeholder="All Categories" class="chosen-select"
+                                    <select title="cate" data-placeholder="All Categories" class="chosen-select" name="search_with"
                                             tabindex="1">
-                                        <option name="product_name" value="United States">ProductName</option>
-                                        <option value="United Kingdom">Grade</option>
+                                        <option value="name">ProductName</option>
+                                        <option value="grade">Grade</option>
                                         <option value="Afghanistan">Price Less Than</option>
                                         <option value="Aland Islands">Box</option>
                                         <option value="Albania">New Arrivals</option>
@@ -101,7 +103,7 @@
                                     </select>
                                 </div>
                                 <div class="inner">
-                                    <input type="text" class="input" name="s" value="" placeholder="Search here">
+                                    <input type="text" class="input" name="value" value="" placeholder="Search here">
                                 </div>
                                 <button class="btn-search" type="submit">
                                     <span class="icon-search"></span>
@@ -252,7 +254,7 @@
                                                 <a href="/product/s">Delete Product</a>
                                             </li>
                                             <li class="menu-item">
-                                                <a href="addproduct">Add New Product</a>
+                                                <a href="/product/add">Add New Product</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -543,6 +545,7 @@
 <script src="/assets/js/jquery.scrollbar.min.js"></script>
 <script src='/https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
 <script src="/assets/js/frontend-plugin.js"></script>
+<script src="/assets/fancytable/src/fancyTable.min.js"></script>
 </body>
 
 

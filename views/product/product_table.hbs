@@ -12,21 +12,21 @@
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Product id:  </th>
-            <th class="text-center">Product Name</th>
-            <th class="text-center">Grade</th>
-            <th class="text-center">Description</th>
-            <th class="text-center">Universe</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Picture Link</th>
-            <th class="text-center">Edit</th>
-            <th class="text-center">Remove</th>
+            <th class="text-center" >Product id:  </th>
+            <th class="text-center" >Product Name</th>
+            <th class="text-center" >Grade</th>
+            <th class="text-center" >Description</th>
+            <th class="text-center" >Universe</th>
+            <th class="text-center" >Price</th>
+            <th class="text-center" >Picture Link</th>
+            <th class="text-center" >Edit</th>
+            <th class="text-center" >Remove</th>
           </tr>
         </thead>
         <tbody>
           {{#each listOfProduct}}
           <tr>
-            <td class="pt-3-half" contenteditable="true" id="product_td_id">{{product_id}}</td>
+            <td class="pt-3-half" contenteditable="true">{{product_id}}</td>
             <td class="pt-3-half" contenteditable="true">{{name}}</td>
             <td class="pt-3-half" contenteditable="true">{{grade}}</td>
             <td class="pt-3-half" contenteditable="true">{{description}}</td>
@@ -34,8 +34,8 @@
             <td class="pt-3-half" contenteditable="true">{{price}}</td>
             <td class="pt-3-half" contenteditable="true">{{link_picture}}</td>
             <td class="table-warning">
-              <span class="table-remove"
-                ><button type="button" class="btn btn-warning btn-rounded btn-sm my-0 edit">
+              <span class="table-edit"
+                ><button type="button" class="btn-warning btn-rounded edit">
                   <i class="bi bi-pencil-square"></i>
                 </button>
               </span>
