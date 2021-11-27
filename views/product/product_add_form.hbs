@@ -1,80 +1,148 @@
-<div class="card">
-  <h2 class="card-header text-center font-weight-bold text-uppercase py-4">
-    Please fill in the following information in the table below !!!!!
-  </h2>
-  <div class="card-body">
-    <div id="table_product" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"><a
-          href="#!"
-          class="text-success"
-        ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
-      <table
-        class="table table-bordered table-responsive-md table-striped text-center"
-        id="add_product_table"
-      >
-        <thead>
-          <tr>
-            <th class="text-center">Product id: </th>
-            <th class="text-center">Product Name</th>
-            <th class="text-center">Grade</th>
-            <th class="text-center">Description</th>
-            <th class="text-center">Universe</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Picture Link</th>
-            <th class="text-center">Add</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_id"
-            ></td>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_name"
-            ></td>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_grade"
-            ></td>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_description"
-            ></td>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_universe"
-            ></td>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_price"
-            ></td>
-            <td
-              class="pt-3-half"
-              contenteditable="true"
-              id="th_product_remove"
-            ></td>
-            <td class="table-wild" >
-              <span class="table-edit"><button
-                  type="button"
-                  class="btn-rounded edit"
-                  style="background-color: darkolivegreen"
-                >
-                  <i class="bi bi-plus-lg"></i>
-
-                </button>
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<div class="container">
+  <h1 style="color: red">Please enter all the information below !!!!!!!</h1>
+  <div class="row" style="padding: 20px; border: solid 4px; margin: 10px">
+    <form
+      class="row-g3 needs-validation"
+      id="product_add_form"
+      action="/product/add"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div class="col-md-12">
+        <label for="id">Product ID:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="product_id_add_form "
+          placeholder="integer number"
+          name="product_id"
+          required
+        />
+        <div class="invalid-feedback" style="color:red">
+          (*) Must includes ID
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="formGroupExample-small">Price: $</label>
+        <input
+          type="text"
+          class="input-small"
+          name="price"
+          id="formGroupExample-small"
+          placeholder="$"
+        />
+      </div>
+      <div class="col-xs-6">
+        <label for="product_name_add_form">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="product_name_add_form"
+          placeholder="Product Name"
+          name="name"
+          required
+        />
+        <div class="invalid-feedback" style="color:red">
+          (*) Must includes name
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <legend class="col-form-label col-sm-2 pt-0">Grade</legend>
+        <div class="col-sm-10">
+          <div class="form-radio">
+            <input
+              class="form-radio-input"
+              type="radio"
+              name="grade"
+              id="gridradios1"
+              value="Master Grade"
+            />
+            <label class="form-check-label" for="gridradios1">
+              Master Grade
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-radio-input"
+              type="radio"
+              name="grade"
+              id="gridradios2"
+              value="High Grade"
+            />
+            <label class="form-check-label" for="gridradios2">
+              High Grade
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-radio-input"
+              type="radio"
+              name="grade"
+              id="gridradios3"
+              value="Custom"
+            />
+            <label class="form-check-label" for="gridradios3">
+              Custom
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          name="description"
+          rows="7"
+        >
+          Write less than 500 characters
+        </textarea>
+      </div>
+      <div class="col-sm-6">
+        <label
+          class="my-1 mr-2"
+          for="inlineFormCustomSelectPref"
+        >Universe</label>
+        <select
+          class="custom-select my-1 mr-sm-2"
+          id="inlineFormCustomSelectPref"
+          name="universe"
+        >
+          <option name="Universal Century" value="Universal" selected>
+            Universal Century
+          </option>
+          <option name="Futures Century" value="Futures Century">
+            Futures Century
+          </option>
+          <option name="Cosmic Era" value="Cosmic Era">Cosmic Era</option>
+          <option name="Anno Donmini" value="A.D Anno Donmini">
+            A.D Anno Donmini
+          </option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label for="inputGroupFile04">Choose an image</label>
+        <div class="input-group">
+          <div class="custom-file">
+            <input
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile04"
+              name="image_file"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-4 text-right">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="add_product_submit"
+          style="margin-top: 30px;"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   </div>
 </div>
