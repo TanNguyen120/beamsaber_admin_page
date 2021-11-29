@@ -8,24 +8,7 @@ const saveDefaultPath = "/assets/beam_saber_images/product_imgs/";
 
 // --------------------------------------------------------------------------------------------------------------
 
-/**
- * find all item and pageination
- *
- */
-exports.productTable = async function(req, res) {
-    const page = parseInt(req.query.page);
 
-    console.log(" client want find items in page: " + page);
-
-    if (!isNaN(page) && page > 0) {
-        const listOfProduct = await productService.listProductTable(page - 1, 12);
-        res.render("./product/product_table", { listOfProduct, page });
-    } else {
-        const listOfProduct = await productService.listProductTable();
-
-        res.render("./product/product_table", { listOfProduct, page: 1 });
-    }
-};
 
 // --------------------------------------------------------------------------------------------------------------
 
@@ -76,7 +59,7 @@ exports.deleteProductWithID = async function(req, res) {
  * @param {*} res
  */
 exports.findProductById = async function(req, res) {
-    const id = req.body.product_id;
+    const id = req.query.product_id;
     console.log("id is " + id);
     if (!isNaN(id)) {
         const productDetails = await productService.findProduct(id);
@@ -138,6 +121,7 @@ exports.editProductWithPostValue = async function(req, res) {
     const link_picture = req.body.link;
 
     if (isNaN(id)) {
+        res.status(500);
         res.end("failed. Try to edit imaginary product");
     } else {
         const findProduct = await productService.findProduct(id);

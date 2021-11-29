@@ -89,7 +89,7 @@
                     <div class="block-search-block">
 
                         <!-- Search bar here /-->
-                        <form class="form-search form-search-width-category" action="/product/search" method="POST">
+                        <form class="form-search form-search-width-category" action="/products/list" method="GET">
                             <div class="form-content">
                                 <div class="category">
                                     <select title="cate" data-placeholder="All Categories" class="chosen-select" name="search_with"
@@ -149,51 +149,51 @@
 								<span></span>
 								<span></span>
 							</span>
-                        <span class="text">All Categories</span>
+                        <span class="text">All Tool</span>
                     </div>
                     <div class="block-content verticalmenu-content">
                         <ul class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
                             <li class="menu-item">
-                                <a href="\product" class="tanajil-menu-item-title" title="New Arrivals">High Grade</a>
+                                <a href="/product" class="tanajil-menu-item-title" title="New Arrivals">Add new Product</a>
                             </li>
                             <li class="menu-item">
-                                <a title="Master Grade" href="\product" class="tanajil-menu-item-title">Master Grade</a>
+                                <a title="Master Grade" href="/product" class="tanajil-menu-item-title">Master Grade</a>
                             </li>
                             <li class="menu-item menu-item-has-children">
-                                <a title="Accessories" href="\product" class="tanajil-menu-item-title">Accessories</a>
+                                <a title="Accessories" href="/product" class="tanajil-menu-item-title">Accessories</a>
                                 <span class="toggle-submenu"></span>
                                 <ul role="menu" class=" submenu">
                                     <li class="menu-item">
-                                        <a title="Popular" href="\product" class="tanajil-item-title">Popular</a>
+                                        <a title="Popular" href="/product" class="tanajil-item-title">Popular</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a title="Interior" href="\product" class="tanajil-item-title">Prebuild</a>
+                                        <a title="Interior" href="/product" class="tanajil-item-title">Prebuild</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a title="New Arrivals" href="\product" class="tanajil-item-title">New Arrivals</a>
+                                        <a title="New Arrivals" href="/product" class="tanajil-item-title">New Arrivals</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a title="Accessories" href="\product" class="tanajil-item-title">Accessories</a>
+                                        <a title="Accessories" href="/product" class="tanajil-item-title">Accessories</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a title="Display Case" href="\product" class="tanajil-item-title">Display Case</a>
+                                        <a title="Display Case" href="/product" class="tanajil-item-title">Display Case</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="menu-item">
-                                <a title="Prebuild" href="\product" class="tanajil-menu-item-title">Prebuild</a>
+                                <a title="Prebuild" href="/product" class="tanajil-menu-item-title">Prebuild</a>
                             </li>
                             <li class="menu-item">
-                                <a title="High Grade" href="\product" class="tanajil-menu-item-title">High Grade</a>
+                                <a title="High Grade" href="/product" class="tanajil-menu-item-title">High Grade</a>
                             </li>
                             <li class="menu-item">
-                                <a title="MiniFigure" href="\product" class="tanajil-menu-item-title">MiniFigure</a>
+                                <a title="MiniFigure" href="/product" class="tanajil-menu-item-title">MiniFigure</a>
                             </li>
                             <li class="menu-item">
-                                <a title="Option Part" href="\product" class="tanajil-menu-item-title">Option Part</a>
+                                <a title="Option Part" href="/product" class="tanajil-menu-item-title">Option Part</a>
                             </li>
                             <li class="menu-item">
-                                <a title="Master Grade" href="\product" class="tanajil-menu-item-title">Master Grade</a>
+                                <a title="Master Grade" href="/product" class="tanajil-menu-item-title">Master Grade</a>
                             </li>
                         </ul>
                     </div>
@@ -206,11 +206,11 @@
                                 <span class="toggle-submenu"></span>
                             </li>
                             <li class="menu-item menu-item-has-children">
-                                <a href="/product" class="tanajil-menu-item-title" title="Shop">Product</a>
+                                <a href="/products/all" class="tanajil-menu-item-title" title="Shop">Product</a>
                                 <span class="toggle-submenu"></span>
                                 <ul class="submenu">
                                     <li class="menu-item">
-                                        <a href="/product" id="menu_item_all_product">All Product</a>
+                                        <a href="/products/all" id="menu_item_all_product">All Product</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="gridproducts_leftsidebar.html">Grid Left sidebar</a>
@@ -222,6 +222,21 @@
                                         <a href="listproducts.html">List</a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="#" class="tanajil-menu-item-title" title="Post Layout">Product Management</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul class="submenu">
+                                        <li class="menu-item">
+                                            <a href="/find_by_id_form">Edit Product Data</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="/find_by_id_form">Delete Product</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="/product/create_form">Add New Product</a>
+                                        </li>
+                                    </ul>
                             </li>
                             <li class="menu-item  menu-item-has-children">
                                 <a href="inblog_right-siderbar.html" class="tanajil-menu-item-title"
@@ -248,13 +263,13 @@
                                         <span class="toggle-submenu"></span>
                                         <ul class="submenu">
                                             <li class="menu-item">
-                                                <a href="/product/s">Edit Product Data</a>
+                                                <a href="/find_by_id_form">Edit Product Data</a>
                                             </li>
                                             <li class="menu-item">
-                                                <a href="/product/s">Delete Product</a>
+                                                <a href="/find_by_id_form">Delete Product</a>
                                             </li>
                                             <li class="menu-item">
-                                                <a href="/product/add">Add New Product</a>
+                                                <a href="/product/create_form">Add New Product</a>
                                             </li>
                                         </ul>
                                     </li>

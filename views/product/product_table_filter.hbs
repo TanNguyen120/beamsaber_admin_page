@@ -1,0 +1,88 @@
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    ALL PRODUCT TABLE
+  </h3>
+  <div class="card-body">
+    <div id="table_product" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a
+          href="#!"
+          class="text-success"
+        ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+      <table
+        class="table table-bordered table-responsive-md table-striped text-center"
+      >
+        <thead>
+          <tr>
+            <th class="text-center">Product id: </th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Grade</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Universe</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Picture Link</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each listOfProduct}}
+            <tr>
+              <td
+                class="pt-3-half idCell"
+                contenteditable="false"
+              >{{product_id}}</td>
+              <td class="pt-3-half" contenteditable="true">{{name}}</td>
+              <td class="pt-3-half" contenteditable="true">{{grade}}</td>
+              <td class="pt-3-half" contenteditable="true">{{description}}</td>
+              <td class="pt-3-half" contenteditable="true">{{universe}}</td>
+              <td class="pt-3-half" contenteditable="true">{{price}}</td>
+              <td class="pt-3-half" contenteditable="true">{{link_picture}}</td>
+              <td class="table-warning">
+                <span class="table-edit"><button
+                    type="button"
+                    class="btn-warning btn-rounded edit"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                </span>
+              </td>
+              <td class="table-danger">
+                <span class="table-remove"><button
+                    type="button"
+                    class="btnRemoveProduct"
+                  >
+                    <i class="bi-trash"></i>
+                  </button>
+                </span>
+              </td>
+            </tr>
+          {{/each}}
+          <div class="pagination clearfix style2">
+            <div class="nav-link-filter">
+              <div class="page-numbers" id="prev_page"><i
+                  class="icon fa fa-angle-left"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <!-- Page Number Here /-->
+              <a href="{{filterCondition}}&page=1" class="page-numbers">1</a>
+              <a href="{{filterCondition}}&page=2" class="page-numbers">2</a>
+              <a href="{{filterCondition}}&page=3" class="page-numbers">3</a>
+              <a href="{{filterCondition}}&page=4" class="page-numbers">4</a>
+              <a href="{{filterCondition}}&page=5" class="page-numbers">5</a>
+              <div class="page-numbers" id="next_page"><i
+                  class="icon fa fa-angle-right"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div id="currpageVar"  style="display:none"> {{pagePass}} </div>
+              <div id="filter_value" style="display:none">{{filterCondition}} </div>
+            </div>
+          </div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Editable table -->

@@ -13,6 +13,9 @@ const adminRouter = require("./components/admin/index");
 
 // define product router in component folder
 const productRouter = require("./components/product/index");
+
+// define router products
+const productsRouter = require("./components/products/index");
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -36,6 +39,15 @@ app.use("/", adminRouter);
 
 // middleware for productlist task
 app.use("/product", productRouter);
+
+// use middleware for products
+app.use("/products", productsRouter);
+
+//default find by id form
+
+app.get("/find_by_id_form",(req, res, next)=>{
+  res.render("find_form");
+} )
 
 
 

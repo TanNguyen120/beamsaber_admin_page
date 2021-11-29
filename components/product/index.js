@@ -2,34 +2,38 @@ const express = require("express");
 const router = express.Router();
 const productController = require("./productController");
 
-/* GET home page. */
-router.get("/", productController.productTable);
 
-// GET PRODUCT TABLE
-router.get("/all_product", productController.productTable);
+// Middles ware for CRUDE product tables --------------------------------------------------------------------------------------------------------------
+router.get("/resource",productController.findProductById);
 
-// Search product form
-router.get("/s", function(req, res) {
-    res.render("./find_form", { title: "search form" });
+
+// post a product will be handle by create_form
+
+// update a product
+router.post("/resource", productController.editProductWithPostValue);
+
+
+
+// delete product relate router -----------------------------------------------------------------------------------------------------
+
+router.get("/resource_remove_data",(req, res)=>{
+    "find_form",{title:"resource_remove_data"}
 });
+router.post("/resource_remove_data", productController.deleteProductWithID);
 
-router.post("/s", productController.findProductById);
 
-// delete product relate router
 
-router.get("/delete", function(req, res) {
-    res.render("./find_form", { title: "find with id" });
-});
 
-router.post("/delete", productController.deleteProductWithID);
-
-// add product relate router
-router.get("/add", function(req, res) {
+// add product relate router ---------------------------------------------------------------------------------------------------------
+router.get("/create_form", function (req, res) {
     res.render("./product/product_add_form", { title: "add product" });
 });
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------
+/*                                          This code block is for multer middleware  
+ */
+
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
@@ -44,7 +48,7 @@ const storage = multer.diskStorage({
      * @param {*} file req file of form data
      * @param {*} cb call back function
      */
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         const destination =
             "public/assets/beam_saber_images/product_imgs/" + req.body.name;
 
@@ -57,7 +61,7 @@ const storage = multer.diskStorage({
         }
         cb(null, destination);
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, req.body.name + path.extname(file.originalname)); //Appending extension this is from Stack OverFlow
     },
 });
@@ -72,27 +76,13 @@ const upload = multer({ storage: storage });
 
 
 
-// this router use two middle ware to do it job 
-router.post(
-    "/add",
+// this router use two middle ware first it use upload middleware from multer to store img file 
+// then use our middleware to store the rest data plus the img link
+router.post("/create_form",
     upload.single("image_file"),
     productController.addProductTextInfo
 );
-// seacrh bar router
-router.get("/search", function(req, res) {
-    res.render("/index");
-});
-router.post("/search", productController.findProductWithCondition);
 
-// edit product routers
-router.get("/edit", productController.productTable);
-
-router.post("/edit", productController.editProductWithPostValue);
-
-// upload product picture router
-router.get("/upload", (req, res) => {
-    res.render("./find_form", { title: "upload picture" });
-});
 
 //-------------------------------------------------------------------------------------------------------------------------------------
 

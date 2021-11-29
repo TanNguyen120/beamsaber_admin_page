@@ -1,15 +1,8 @@
 const { models } = require("../../models");
 const { Op } = require("sequelize");
-const multer = require("multer");
 
-// --------------------------------------------------------------------------------------------------------------
-exports.listProductTable = function(page = 0, items = 12) {
-    return models.product.findAll({
-        offset: page * items,
-        limit: items,
-        raw: true,
-    });
-};
+
+
 
 // --------------------------------------------------------------------------------------------------------------
 
@@ -50,7 +43,6 @@ exports.addProduct = function(
         pName,
         pGrade,
         pUniverse,
-
         pPrice,
         pPictureLink
     );
