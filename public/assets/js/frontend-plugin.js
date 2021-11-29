@@ -927,183 +927,6 @@ jQuery(document).ready(function($) {
     // ******************************************************************************************************************************************************************
 
     //---------------------------------Pageination ---------------------------------------
-    function pageination_toggle_current_page() {
-        const pageItem = $("div.nav-link > a");
-        const pageCurr = $("#currpage");
-
-        // This is a loop that go through all element of pageItem class
-        pageItem.each(function(i = 1, pages = $(this)) {
-            let pages_number = $(this).text();
-            console.log("loop number: " + i);
-            console.log("item: " + pages_number);
-
-            // Find the current page to toggle
-            if (parseInt(pages_number) == parseInt(pageCurr.text())) {
-                console.log(
-                    "found matching page: " + pages_number + " " + pageCurr.text()
-                );
-                $(this).toggleClass("current");
-                return;
-            }
-            i++;
-        });
-    }
-
-    function nextpage_click() {
-        const pageItem = $("div.nav-link > a");
-        const pageCurr = $("#currpage");
-        const next_page_button = $("#next_page");
-
-        // when click on next page button we will loop through all page => find current page => click on next page
-        next_page_button.click(() => {
-            pageItem.each(function(i = 1, pages = $(this)) {
-                let pages_number = $(this).text();
-                // Find the current page to click next page
-                if (parseInt(pages_number) == parseInt(pageCurr.text())) {
-                    const next_page = $(this).next();
-                    console.log("next page is: " + next_page.text());
-                    next_page[0].click();
-                }
-                i++;
-            });
-        });
-    }
-
-    function prevpage_click() {
-        const pageItem = $("div.nav-link > a");
-        const pageCurr = $("#currpage");
-        const prev_page_button = $("#prev_page");
-
-        // when click on next page button we will loop through all page => find current page => click on prev page
-        prev_page_button.click(() => {
-            pageItem.each(function(i = 1, pages = $(this)) {
-                let pages_number = $(this).text();
-                // Find the current page to click next page
-                if (parseInt(pages_number) == parseInt(pageCurr.text())) {
-                    const prev_page = $(this).prev();
-                    prev_page[0].click();
-                }
-                i++;
-            });
-        });
-    }
-
-    //--------------------------------- Delete Product Action -------------------------------------
-    function delete_product() {
-        // event listener for remove row putton
-        $("#table_product").on("click", ".btnRemoveProduct", function() {
-            var currentRow = $(this).closest("tr");
-            // get current row 1st TD value
-            var col1 = currentRow.find("td:eq(0)").text();
-            alert("you delete product with id =" + col1);
-            $.post("/product/delete", { product_id: col1 }, function(result) {
-                alert("delete product with id =" + col1 + " " + result);
-                if (result == "success") {
-                    location.reload(true);
-                }
-            });
-        });
-    }
-
-    /// --------------------------- Add Product Action ---------------------------------------------
-    function addProduct() {
-        // event listener
-        $("#add_product_table").on("click", ".btn-rounded.edit", function() {
-            // find the row where button is clicked
-            const currentRow = $(this).closest("tr");
-            const product_id = currentRow.find("td:eq(0)").text();
-            const name = currentRow.find("td:eq(1)").text();
-            const grade = currentRow.find("td:eq(2)").text();
-            const description = currentRow.find("td:eq(3)").text();
-            const universe = currentRow.find("td:eq(4)").text();
-            const price = currentRow.find("td:eq(5)").text();
-            alert(
-                "you have fill those info: " +
-                product_id +
-                " " +
-                name +
-                " " +
-                price +
-                " " +
-                universe +
-                " " +
-                grade +
-                " " +
-                description
-            );
-
-            const imagesFormData = new FormData();
-            imagesFormData.append("file", $("#pictureFilesInput")[0].files[0], name);
-
-            // posting string data
-            // $.post(
-            //   "/product/add",
-            //   { product_id, name, grade, description, universe, price },
-            //   function (result) {
-            //     alert("create product: " + result);
-            //   }
-            // );
-
-            //posting file dataType
-
-            $.ajax({
-                url: "/product/upload",
-                type: "POST",
-                data: imagesFormData,
-                // Tell jQuery not to process data or worry about content-type
-                cache: false,
-                contentType: false,
-                processData: false,
-            }).done(function(response) {
-                alert(response);
-            });
-
-
-        });
-    }
-
-    // ********* TODO : WRITE ROUTER AND HANDLER FOR FILE UPLOAD
-
-    //--------------------------------- Edit Product Action ---------------------------------------------------------
-    function editProductButton() {
-        // event listener for remove row putton
-        $("#table_product").on(
-            "click",
-            ".btn-warning.btn-rounded.edit",
-            function() {
-                var currentRow = $(this).closest("tr");
-                // get all value in row
-                const product_id = currentRow.find("td:eq(0)").text();
-                const name = currentRow.find("td:eq(1)").text();
-                const description = currentRow.find("td:eq(3)").text();
-                const universe = currentRow.find("td:eq(4)").text();
-                const price = currentRow.find("td:eq(5)").text();
-                const link = currentRow.find("td:eq(6)").text();
-                const eGrade = currentRow.find("td:eq(2)").text();
-
-                alert(
-                    "you are editing product with id= " +
-                    product_id +
-                    " and name= " +
-                    name +
-                    " grade= " +
-                    eGrade +
-                    " link= " +
-                    link
-                );
-
-                $.post(
-                    "/product/edit", { product_id, name, eGrade, description, universe, price, link },
-                    function(result) {
-                        alert("edit product: " + result);
-                        if (result == "success") {
-                            location.reload(true);
-                        }
-                    }
-                );
-            }
-        );
-    }
 
     function pagesRender() {
         const pageArray = $("div.nav-link > a");
@@ -1140,6 +963,28 @@ jQuery(document).ready(function($) {
                 console.log("found matching page: " + page + "|" + currrentPage.text());
                 $(this).toggleClass("current");
                 return false;
+            }
+            i++;
+        });
+    }
+
+    function pageination_toggle_current_page() {
+        const pageItem = $("div.nav-link > a");
+        const pageCurr = $("#currpage");
+
+        // This is a loop that go through all element of pageItem class
+        pageItem.each(function(i = 1, pages = $(this)) {
+            let pages_number = $(this).text();
+            console.log("loop number: " + i);
+            console.log("item: " + pages_number);
+
+            // Find the current page to toggle
+            if (parseInt(pages_number) == parseInt(pageCurr.text())) {
+                console.log(
+                    "found matching page: " + pages_number + " " + pageCurr.text()
+                );
+                $(this).toggleClass("current");
+                return;
             }
             i++;
         });
@@ -1213,6 +1058,125 @@ jQuery(document).ready(function($) {
         });
     }
 
+    //--------------------------------- Delete Product Action -------------------------------------
+    function delete_product() {
+        // event listener for remove row putton
+        $("#table_product").on("click", ".btnRemoveProduct", function() {
+            var currentRow = $(this).closest("tr");
+            // get current row 1st TD value
+            var col1 = currentRow.find("td:eq(0)").text();
+            alert("you delete product with id =" + col1);
+            $.post("/product/resource_remove_data", { product_id: col1 }, function(result) {
+                alert("delete product with id =" + col1 + " " + result);
+                if (result == "success") {
+                    location.reload(true);
+                }
+            });
+        });
+    }
+
+    /// --------------------------- Add Product Action ---------------------------------------------
+    function addProduct() {
+        // event listener
+        $("#add_product_table").on("click", ".btn-rounded.edit", function() {
+            // find the row where button is clicked
+            const currentRow = $(this).closest("tr");
+            const product_id = currentRow.find("td:eq(0)").text();
+            const name = currentRow.find("td:eq(1)").text();
+            const grade = currentRow.find("td:eq(2)").text();
+            const description = currentRow.find("td:eq(3)").text();
+            const universe = currentRow.find("td:eq(4)").text();
+            const price = currentRow.find("td:eq(5)").text();
+            alert(
+                "you have fill those info: " +
+                product_id +
+                " " +
+                name +
+                " " +
+                price +
+                " " +
+                universe +
+                " " +
+                grade +
+                " " +
+                description
+            );
+
+            const imagesFormData = new FormData();
+            imagesFormData.append("file", $("#pictureFilesInput")[0].files[0], name);
+
+            // posting string data
+            // $.post(
+            //   "/product/add",
+            //   { product_id, name, grade, description, universe, price },
+            //   function (result) {
+            //     alert("create product: " + result);
+            //   }
+            // );
+
+            //posting file dataType
+
+            $.ajax({
+                url: "/product/create_form",
+                type: "POST",
+                data: imagesFormData,
+                // Tell jQuery not to process data or worry about content-type
+                cache: false,
+                contentType: false,
+                processData: false,
+            }).done(function(response) {
+                alert(response);
+            });
+
+
+        });
+    }
+
+
+    //--------------------------------- Edit Product Action ---------------------------------------------------------
+    function editProductButton() {
+        // event listener for remove row putton
+        $("#table_product").on(
+            "click",
+            ".btn-warning.btn-rounded.edit",
+            function() {
+                var currentRow = $(this).closest("tr");
+                // get all value in row
+                const product_id = currentRow.find("td:eq(0)").text();
+                const name = currentRow.find("td:eq(1)").text();
+                const description = currentRow.find("td:eq(3)").text();
+                const universe = currentRow.find("td:eq(4)").text();
+                const price = currentRow.find("td:eq(5)").text();
+                const link = currentRow.find("td:eq(6)").text();
+                const eGrade = currentRow.find("td:eq(2)").text();
+
+                alert(
+                    "you are editing product with id= " +
+                    product_id +
+                    " and name= " +
+                    name +
+                    " grade= " +
+                    eGrade +
+                    " link= " +
+                    link
+                );
+
+                $.post(
+                    "/product/resource", { product_id, name, eGrade, description, universe, price, link },
+                    function(result) {
+                        alert("edit product: " + result);
+                        if (result == "success") {
+                            location.reload(true);
+                        }
+                    }
+                );
+            }
+        );
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+
+    
+ 
     // ------------------------------------------------------------------------------------------------------------------
     $(window).scroll(function() {
         tanajil_custom_scrollbar();
@@ -1255,4 +1219,5 @@ jQuery(document).ready(function($) {
     pagesRender();
     nextpage_click();
     prevpage_click();
+    
 });
