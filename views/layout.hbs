@@ -89,15 +89,16 @@
                     <div class="block-search-block">
 
                         <!-- Search bar here /-->
-                        <form class="form-search form-search-width-category" action="/products/list" method="GET">
+                        <form class="form-search form-search-width-category" action="/search/" method="GET">
                             <div class="form-content">
                                 <div class="category">
                                     <select title="cate" data-placeholder="All Categories" class="chosen-select" name="search_with"
                                             tabindex="1">
-                                        <option value="name">ProductName</option>
-                                        <option value="grade">Grade</option>
-                                        <option value="Afghanistan">Price Less Than</option>
-                                        <option value="Aland Islands">Box</option>
+                                        <option value="product_name">ProductName</option>
+                                        <option value="product_grade">Grade</option>
+                                        <option value="user_name">User Name</option>
+                                        <option value="user_role
+                                        ">Box</option>
                                         <option value="Albania">New Arrivals</option>
                                         <option value="Algeria">Delcans</option>
                                     </select>
@@ -154,13 +155,16 @@
                     <div class="block-content verticalmenu-content">
                         <ul class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
                             <li class="menu-item">
-                                <a href="/product" class="tanajil-menu-item-title" title="New Arrivals">Add new Product</a>
+                                <a title="Master Grade" href="/products/all/" class="tanajil-menu-item-title">Products Table</a>
                             </li>
                             <li class="menu-item">
-                                <a title="Master Grade" href="/product" class="tanajil-menu-item-title">Master Grade</a>
+                                <a href="/product/create_form" class="tanajil-menu-item-title" title="New Arrivals">Add new Product</a>
                             </li>
+                             <li class="menu-item menu-item-has-children">
+                                <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Edit Product</a>
+                             </li>
                             <li class="menu-item menu-item-has-children">
-                                <a title="Accessories" href="/product" class="tanajil-menu-item-title">Accessories</a>
+                                <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Products List</a>
                                 <span class="toggle-submenu"></span>
                                 <ul role="menu" class=" submenu">
                                     <li class="menu-item">
@@ -181,19 +185,19 @@
                                 </ul>
                             </li>
                             <li class="menu-item">
-                                <a title="Prebuild" href="/product" class="tanajil-menu-item-title">Prebuild</a>
+                                <a title="Prebuild" href="/find_by_id_form" class="tanajil-menu-item-title">Delete Product</a>
                             </li>
                             <li class="menu-item">
-                                <a title="High Grade" href="/product" class="tanajil-menu-item-title">High Grade</a>
+                                <a title="High Grade" href="/product" class="tanajil-menu-item-title">All user table</a>
                             </li>
                             <li class="menu-item">
-                                <a title="MiniFigure" href="/product" class="tanajil-menu-item-title">MiniFigure</a>
+                                <a title="MiniFigure" href="/product" class="tanajil-menu-item-title">Add user</a>
                             </li>
                             <li class="menu-item">
-                                <a title="Option Part" href="/product" class="tanajil-menu-item-title">Option Part</a>
+                                <a title="Option Part" href="/product" class="tanajil-menu-item-title">Edit user account</a>
                             </li>
                             <li class="menu-item">
-                                <a title="Master Grade" href="/product" class="tanajil-menu-item-title">Master Grade</a>
+                                <a title="Master Grade" href="/product" class="tanajil-menu-item-title">Delete user account</a>
                             </li>
                         </ul>
                     </div>
@@ -201,16 +205,12 @@
                 <div class="header-nav">
                     <div class="container-wapper">
                         <ul class="tanajil-clone-mobile-menu tanajil-nav main-menu " id="menu-main-menu">
-                            <li class="menu-item  menu-item-has-children">
-                                <a href="/" class="tanajil-menu-item-title" title="Home">Home</a>
-                                <span class="toggle-submenu"></span>
-                            </li>
                             <li class="menu-item menu-item-has-children">
-                                <a href="/products/all" class="tanajil-menu-item-title" title="Shop">Product</a>
+                                <a href="/products/all/" class="tanajil-menu-item-title" title="Shop">Products</a>
                                 <span class="toggle-submenu"></span>
                                 <ul class="submenu">
                                     <li class="menu-item">
-                                        <a href="/products/all" id="menu_item_all_product">All Product</a>
+                                        <a href="/products/all/" id="menu_item_all_product">All Product</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="gridproducts_leftsidebar.html">Grid Left sidebar</a>
@@ -223,6 +223,24 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/accounts/all/" class="tanajil-menu-item-title" title="Shop">Accounts</a>
+                                <span class="toggle-submenu"></span>
+                                <ul class="submenu">
+                                    <li class="menu-item">
+                                        <a href="/accounts/all/" id="menu_item_all_product">All Accounts</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="gridproducts_leftsidebar.html">User Accounts</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="gridproducts_bannerslider.html">Admin Accounts</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="listproducts.html">List</a>
+                                    </li>
+                                </ul>
+                            </li>                            
                             <li class="menu-item menu-item-has-children">
                                 <a href="#" class="tanajil-menu-item-title" title="Post Layout">Product Management</a>
                                     <span class="toggle-submenu"></span>
@@ -238,7 +256,22 @@
                                         </li>
                                     </ul>
                             </li>
-                            <li class="menu-item  menu-item-has-children">
+                            <li class="menu-item menu-item-has-children">
+                                <a href="#" class="tanajil-menu-item-title" title="Post Layout">Account Management</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul class="submenu">
+                                        <li class="menu-item">
+                                            <a href="/find_by_id_form">Edit Account Data</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="/find_by_id_form">Delete Account</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="/product/create_form">Add New Product</a>
+                                        </li>
+                                    </ul>
+                            </li>                            
+                            {{!-- <li class="menu-item  menu-item-has-children">
                                 <a href="inblog_right-siderbar.html" class="tanajil-menu-item-title"
                                    title="Admin Tool">Admin Tool</a>
                                 <span class="toggle-submenu"></span>
@@ -277,7 +310,7 @@
 
                                 
                                 
-                            </li>
+                            </li> --}}
                             <li class="menu-item">
                                 <a href="/about_us" class="tanajil-menu-item-title" title="About">About</a>
                             </li>

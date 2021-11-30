@@ -1,7 +1,7 @@
 <!-- Editable table -->
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-    ALL PRODUCT TABLE
+    ALL ACCOUNTS TABLE
   </h3>
   <div class="card-body">
     <div id="table_product" class="table-editable">
@@ -14,34 +14,37 @@
       >
         <thead>
           <tr>
-            <th class="text-center">Product id: </th>
-            <th class="text-center">Product Name</th>
-            <th class="text-center">Grade</th>
-            <th class="text-center">Description</th>
-            <th class="text-center">Universe</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Picture Link</th>
+            <th class="text-center">Account id</th>
+            <th class="text-center">Account Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Password</th>
+            <th class="text-center">Phone</th>
+            <th class="text-center">Address</th>
+            <th class="text-center">Bank Account</th>
+            <th class="text-center">Role</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Remove</th>
           </tr>
         </thead>
         <tbody>
-          {{#each listOfProduct}}
+          {{#each listOfAccounts}}
             <tr>
               <td
                 class="pt-3-half idCell"
                 contenteditable="false"
-              >{{product_id}}</td>
+              >{{user_id}}</td>
               <td class="pt-3-half" contenteditable="true">{{name}}</td>
-              <td class="pt-3-half" contenteditable="true">{{grade}}</td>
-              <td class="pt-3-half" contenteditable="true">{{description}}</td>
-              <td class="pt-3-half" contenteditable="true">{{universe}}</td>
-              <td class="pt-3-half" contenteditable="true">{{price}}</td>
-              <td class="pt-3-half" contenteditable="true">{{link_picture}}</td>
+              <td class="pt-3-half" contenteditable="true">{{email}}</td>
+              <td class="pt-3-half" contenteditable="true">{{password}}</td>
+              <td class="pt-3-half" contenteditable="true">{{phone}}</td>
+              <td class="pt-3-half" contenteditable="true">{{address}}</td>
+              <td class="pt-3-half" contenteditable="true">{{bank_account}}</td>
+              <td class="pt-3-half" contenteditable="true">{{role}}</td>
+
               <td class="table-warning">
                 <span class="table-edit"><button
                     type="button"
-                    class="btn-warning btn-rounded edit"
+                    class="btn-warning btn-rounded account-edit"
                   >
                     <i class="bi bi-pencil-square"></i>
                   </button>
@@ -50,7 +53,7 @@
               <td class="table-danger">
                 <span class="table-remove"><button
                     type="button"
-                    class="btnRemoveProduct"
+                    class="btn-danger btn-rounded account-delete"
                   >
                     <i class="bi-trash"></i>
                   </button>
@@ -58,26 +61,25 @@
               </td>
             </tr>
           {{/each}}
-          <div class="pagination clearfix style2">
-            <div class="nav-link-filter" style="margin:10px">
+          <div class="pagination clearfix style2" style="margin:10px">
+            <div class="nav-link">
               <div class="page-numbers" id="prev_page"><i
                   class="icon fa fa-angle-left"
                   aria-hidden="true"
                 ></i>
               </div>
               <!-- Page Number Here /-->
-              <a href="{{filterCondition}}&page=1" class="page-numbers">1</a>
-              <a href="{{filterCondition}}&page=2" class="page-numbers">2</a>
-              <a href="{{filterCondition}}&page=3" class="page-numbers">3</a>
-              <a href="{{filterCondition}}&page=4" class="page-numbers">4</a>
-              <a href="{{filterCondition}}&page=5" class="page-numbers">5</a>
+              <a href="?page=1" class="page-numbers">1</a>
+              <a href="?page=2" class="page-numbers">2</a>
+              <a href="?page=3" class="page-numbers">3</a>
+              <a href="?page=4" class="page-numbers">4</a>
+              <a href="?page=5" class="page-numbers">5</a>
               <div class="page-numbers" id="next_page"><i
                   class="icon fa fa-angle-right"
                   aria-hidden="true"
                 ></i>
               </div>
-              <div id="currpageVar"  style="display:none"> {{pagePass}} </div>
-              <div id="filter_value" style="display:none">{{filterCondition}} </div>
+              <div id="currpageVar" style="display: none"> {{pagePass}} </div>
             </div>
           </div>
         </tbody>

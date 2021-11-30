@@ -100,7 +100,7 @@ sequelize
         }
     })
     .catch((err) => {
-        console.error("error:   " + err);
+        console.error("!!!!! ERROR !!!!!!:   " + err);
         exit;
     });
     

@@ -4,7 +4,7 @@ const productService = require("./productService");
 
 // define the default path to save picture here
 
-const saveDefaultPath = "/assets/beam_saber_images/product_imgs/";
+
 
 // --------------------------------------------------------------------------------------------------------------
 
@@ -165,7 +165,7 @@ exports.addProductTextInfo = async function(req, res) {
     const universe = req.body.universe;
     const description = req.body.description;
     const price = parseFloat(req.body.price);
-    const link_picture = (saveDefaultPath + req.body.name + "/" + req.file.filename);
+    const link_picture = (process.env.SAVE_IMG_PATH + req.body.name + "/" + req.file.filename);
 
 
 

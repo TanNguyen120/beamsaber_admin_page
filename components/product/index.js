@@ -50,7 +50,7 @@ const storage = multer.diskStorage({
      */
     destination: function (req, file, cb) {
         const destination =
-            "public/assets/beam_saber_images/product_imgs/" + req.body.name;
+            "public" + process.env.IMG_STORE_PATH + req.body.name;
 
         console.log("!!!!!!!!!!!!!! " + destination);
         const dir = destination;

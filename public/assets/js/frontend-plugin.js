@@ -1131,6 +1131,65 @@ jQuery(document).ready(function($) {
 
         });
     }
+    //---------------------------------- EDIT USER BUTTON -----------------------------------------------------------
+    function editAccountButton(){
+        $("#table_product").on(
+            "click",
+            ".btn-warning.btn-rounded.account-edit",
+            function() {
+                var currentRow = $(this).closest("tr");
+                // get all value in row
+                const user_id = currentRow.find("td:eq(0)").text();
+                const name = currentRow.find("td:eq(1)").text();
+                const email = currentRow.find("td:eq(2)").text();
+                const password = currentRow.find("td:eq(3)").text();
+                const phone = currentRow.find("td:eq(4)").text();
+                const address = currentRow.find("td:eq(5)").text();
+                const bank_account = currentRow.find("td:eq(6)").text();
+                const role = currentRow.find("td:eq(7)").text();
+
+                alert(
+                   "you edit: " + role + " " + bank_account + address + " " + phone + " " + password + " " + email + " " + name + " " + user_id
+                );
+
+                $.post(
+                    "/account/resource", { user_id, name,email, password,phone,address,bank_account,role},
+                    function(result) {
+                        alert("edit product: " + result);
+                        if (result == "success") {
+                            location.reload(true);
+                        }
+                    }
+                );
+            }
+        );
+    }
+
+    //---------------------------------------------Delete account-----------------------------------------------------
+    function delete_account() {
+        // event listener for remove row putton
+        $("#table_product").on("click", ".btn-danger.btn-rounded.account-delete", function() {
+            var currentRow = $(this).closest("tr");
+            // get current row 1st TD value
+            var col1 = currentRow.find("td:eq(0)").text();
+            alert("you delete account with id =" + col1);
+            $.ajax({
+                url: "/account/resource/"+col1,
+                type: "DELETE",
+                success: function(result) {
+                    alert(result);
+                    location.reload(true);
+                }
+            })
+            // $.post("/product/resource_remove_data", { product_id: col1 }, function(result) {
+            //     alert("delete product with id =" + col1 + " " + result);
+            //     if (result == "success") {
+            //         location.reload(true);
+            //     }
+            // });
+        });
+    }
+
 
 
     //--------------------------------- Edit Product Action ---------------------------------------------------------
@@ -1176,7 +1235,7 @@ jQuery(document).ready(function($) {
     //-------------------------------------------------------------------------------------------------------------------
 
 
-    //------------------- PAGINATION WITH FILTER IN QUERY STRING --------------------------------------------------------
+    //--------------------------------------- PAGINATION WITH FILTER IN QUERY STRING ------------------------------------
 
     function pagesRender_filter() {
         const pageArray = $("div.nav-link-filter> a");
@@ -1359,6 +1418,7 @@ jQuery(document).ready(function($) {
     pageination_toggle_current_page_filter();
     nextpage_click_filter();
     prevpage_click_filter();
-
+    editAccountButton();
+    delete_account();
     
 });

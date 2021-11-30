@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 const app = express();
 
 //---------------------------------------- app define router ----------------------------------------------------------
@@ -16,6 +15,16 @@ const productRouter = require("./components/product/index");
 
 // define router products
 const productsRouter = require("./components/products/index");
+
+// define accounts router
+const accountsRouter = require("./components/accounts/index");
+
+// define search router
+const searchRouter = require("./components/search_bar/index");
+
+// define account router
+const accountRouter = require("./components/account/index");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -43,12 +52,19 @@ app.use("/product", productRouter);
 // use middleware for products
 app.use("/products", productsRouter);
 
-//default find by id form
+// use middleware for accounts tasks
+app.use("/accounts", accountsRouter);
 
+// use middleware for account tasks
+app.use("/account", accountRouter);
+
+//default find by id form
 app.get("/find_by_id_form",(req, res, next)=>{
   res.render("find_form");
 } )
 
+// use middleware for searching
+app.use("/search",searchRouter);
 
 
 // catch 404 and forward to error handler
