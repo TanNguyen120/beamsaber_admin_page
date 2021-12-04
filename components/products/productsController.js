@@ -6,19 +6,17 @@ const productsService = require('./productsService');
  */
  exports.productTable = async function(req, res,next) {
     
-    const page = parseInt(req.query.page);
+    const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page): 1;
 
     console.log(" client want find items in page: " + page);
-
-    if (!isNaN(page) && page > 0) {
-        const listOfProduct = await productsService.listProductTable(page - 1, 12);
-        res.render("./product/product_table", { listOfProduct, page });
-    } else {
-        const listOfProduct = await productsService.listProductTable();
-
-        res.render("./product/product_table", { listOfProduct, page: 1 });
+    try{
+        const listOfProduct = await productsService.listProductTable(page-1);
+        res.render("./product/product_table",{listOfProduct, page})
+    }catch (err) {
+        console.log(err.message);
+        res.render("error",{message:"cant find list of products"})
+        throw err;
     }
-    next();
 };
 
 

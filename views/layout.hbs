@@ -67,9 +67,13 @@
                     </div>
                 </div>
                 <ul class="header-user-links">
-                    <li>
+                    {{#if user}}
+                        <a href="/login/logout">log out</a>
+                    {{else}}
+                        <li>
                         <a href="/login">Login or Register</a>
-                    </li>
+                        </li>
+                    {{/if}}
                 </ul>
             </div>
         </div>
@@ -124,12 +128,13 @@
                             </a>
                             
                         </div>
-                        <div class="block-account block-header tanajil-dropdown">
-                            <a href="javascript:void(0);" data-tanajil="tanajil-dropdown">
-                                <span class="flaticon-user"></span>
-                            </a>
-                            <h1> welcome back admin</h1> 
-                        </div>
+                        {{#if user}}
+                            <div style="color:grey" style="font-size: 12px" class="block-account">
+                                <a href="/{{user.user_name}}/profile" style= "display:inline-block">
+                                    <h5> Welcome Back Admin: <span class="flaticon-user"></span>   {{user.user_name}}</h5>
+                                <a/>
+                            </div>
+                        {{/if}}
                         <a class="menu-bar mobile-navigation menu-toggle" href="#">
                             <span></span>
                             <span></span>
@@ -140,137 +145,138 @@
             </div>
         </div>
     </div>
+   
     <div class="header-nav-container rows-space-20">
         <div class="container">
             <div class="header-nav-wapper main-menu-wapper">
-                <div class="vertical-wapper block-nav-categori">
-                    <div class="block-title">
-							<span class="icon-bar">
-								<span></span>
-								<span></span>
-								<span></span>
-							</span>
-                        <span class="text">All Tool</span>
+                {{#if user}}
+                    <div class="vertical-wapper block-nav-categori">
+                        <div class="block-title">
+                                <span class="icon-bar">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            <span class="text">All Tool</span>
+                        </div>
+                        <div class="block-content verticalmenu-content">
+                            <ul class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
+                                <li class="menu-item menu-item-has-children">
+                                    <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Products Management</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul role="menu" class=" submenu">
+                                        <li class="menu-item">
+                                            <a title="Master Grade" href="/products/all" class="tanajil-menu-item-title">Products Table</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="/product/create_form" class="tanajil-menu-item-title" title="New Arrivals">Add new Product</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Edit Product</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">User Account Management</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul role="menu" class="submenu">
+                                        <li class="menu-item">
+                                            <a title="High Grade" href="/accounts" class="tanajil-menu-item-title">All user table</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Option Part" href="/find_by_id_form" class="tanajil-menu-item-title">Edit user account</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Master Grade" href="/find_by_id_form" class="tanajil-menu-item-title">Delete user account</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Admin Account Management</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul role="menu" class="submenu">
+                                        <li class="menu-item">
+                                            <a href="/register" class="tanajil-menu-item-title">Register Admin Account</a>s
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="block-content verticalmenu-content">
-                        <ul class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
-                            <li class="menu-item">
-                                <a title="Master Grade" href="/products/all/" class="tanajil-menu-item-title">Products Table</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="/product/create_form" class="tanajil-menu-item-title" title="New Arrivals">Add new Product</a>
-                            </li>
-                             <li class="menu-item menu-item-has-children">
-                                <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Edit Product</a>
-                             </li>
-                            <li class="menu-item menu-item-has-children">
-                                <a title="Accessories" href="/find_by_id_form" class="tanajil-menu-item-title">Products List</a>
-                                <span class="toggle-submenu"></span>
-                                <ul role="menu" class=" submenu">
-                                    <li class="menu-item">
-                                        <a title="Popular" href="/product" class="tanajil-item-title">Popular</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Interior" href="/product" class="tanajil-item-title">Prebuild</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="New Arrivals" href="/product" class="tanajil-item-title">New Arrivals</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Accessories" href="/product" class="tanajil-item-title">Accessories</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Display Case" href="/product" class="tanajil-item-title">Display Case</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Prebuild" href="/find_by_id_form" class="tanajil-menu-item-title">Delete Product</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="High Grade" href="/product" class="tanajil-menu-item-title">All user table</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="MiniFigure" href="/product" class="tanajil-menu-item-title">Add user</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Option Part" href="/product" class="tanajil-menu-item-title">Edit user account</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Master Grade" href="/product" class="tanajil-menu-item-title">Delete user account</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="header-nav">
-                    <div class="container-wapper">
-                        <ul class="tanajil-clone-mobile-menu tanajil-nav main-menu " id="menu-main-menu">
-                            <li class="menu-item menu-item-has-children">
-                                <a href="/products/all/" class="tanajil-menu-item-title" title="Shop">Products</a>
-                                <span class="toggle-submenu"></span>
-                                <ul class="submenu">
-                                    <li class="menu-item">
-                                        <a href="/products/all/" id="menu_item_all_product">All Product</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="gridproducts_leftsidebar.html">Grid Left sidebar</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="gridproducts_bannerslider.html">Grid Bannerslider</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="listproducts.html">List</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item menu-item-has-children">
-                                <a href="/accounts/all/" class="tanajil-menu-item-title" title="Shop">Accounts</a>
-                                <span class="toggle-submenu"></span>
-                                <ul class="submenu">
-                                    <li class="menu-item">
-                                        <a href="/accounts/all/" id="menu_item_all_product">All Accounts</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="gridproducts_leftsidebar.html">User Accounts</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="gridproducts_bannerslider.html">Admin Accounts</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="listproducts.html">List</a>
-                                    </li>
-                                </ul>
-                            </li>                            
-                            <li class="menu-item menu-item-has-children">
-                                <a href="#" class="tanajil-menu-item-title" title="Post Layout">Product Management</a>
+                    <div class="header-nav">
+                        <div class="container-wapper">
+                            <ul class="tanajil-clone-mobile-menu tanajil-nav main-menu " id="menu-main-menu">
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="/products/all" class="tanajil-menu-item-title" title="Shop">Products</a>
                                     <span class="toggle-submenu"></span>
                                     <ul class="submenu">
                                         <li class="menu-item">
-                                            <a href="/find_by_id_form">Edit Product Data</a>
+                                            <a href="/products/all" id="menu_item_all_product">All Product</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="/find_by_id_form">Delete Product</a>
+                                            <a href="gridproducts_leftsidebar.html">Grid Left sidebar</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="/product/create_form">Add New Product</a>
+                                            <a href="gridproducts_bannerslider.html">Grid Bannerslider</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="listproducts.html">List</a>
                                         </li>
                                     </ul>
-                            </li>
-                            <li class="menu-item menu-item-has-children">
-                                <a href="#" class="tanajil-menu-item-title" title="Post Layout">Account Management</a>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="/accounts/all/" class="tanajil-menu-item-title" title="Shop">Accounts</a>
                                     <span class="toggle-submenu"></span>
                                     <ul class="submenu">
                                         <li class="menu-item">
-                                            <a href="/find_by_id_form">Edit Account Data</a>
+                                            <a href="/accounts/all/" id="menu_item_all_product">All Accounts</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="/find_by_id_form">Delete Account</a>
+                                            <a href="gridproducts_leftsidebar.html">User Accounts</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="/product/create_form">Add New Product</a>
+                                            <a href="gridproducts_bannerslider.html">Admin Accounts</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="listproducts.html">List</a>
                                         </li>
                                     </ul>
-                            </li>                            
+                                </li>                            
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="/products/all" class="tanajil-menu-item-title" title="Post Layout">Product Management</a>
+                                        <span class="toggle-submenu"></span>
+                                        <ul class="submenu">
+                                            <li class="menu-item">
+                                                <a href="/find_by_id_form">Edit Product Data</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/find_by_id_form">Delete Product</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/product/create_form">Add New Product</a>
+                                            </li>
+                                        </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="tanajil-menu-item-title" title="Post Layout">Account Management</a>
+                                        <span class="toggle-submenu"></span>
+                                        <ul class="submenu">
+                                            <li class="menu-item">
+                                                <a href="/find_by_id_form">Edit Account Data</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/find_by_id_form">Delete Account</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/product/create_form">Add New Product</a>
+                                            </li>
+                                        </ul>
+                    
+                                </li>
+                    {{else}}
+                        <h3 style="color:red"> Please <span style="color:white"> <a href="/login"> LOGIN </a> </span> To Use Web Features </h3>
+                                    
+                    {{/if}}
                             {{!-- <li class="menu-item  menu-item-has-children">
                                 <a href="inblog_right-siderbar.html" class="tanajil-menu-item-title"
                                    title="Admin Tool">Admin Tool</a>

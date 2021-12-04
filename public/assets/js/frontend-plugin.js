@@ -1133,7 +1133,7 @@ jQuery(document).ready(function($) {
     }
     //---------------------------------- EDIT USER BUTTON -----------------------------------------------------------
     function editAccountButton(){
-        $("#table_product").on(
+        $("#table_account").on(
             "click",
             ".btn-warning.btn-rounded.account-edit",
             function() {
@@ -1168,7 +1168,7 @@ jQuery(document).ready(function($) {
     //---------------------------------------------Delete account-----------------------------------------------------
     function delete_account() {
         // event listener for remove row putton
-        $("#table_product").on("click", ".btn-danger.btn-rounded.account-delete", function() {
+        $("#table_account").on("click", ".btn-danger.btn-rounded.account-delete", function() {
             var currentRow = $(this).closest("tr");
             // get current row 1st TD value
             var col1 = currentRow.find("td:eq(0)").text();
@@ -1193,11 +1193,17 @@ jQuery(document).ready(function($) {
 
 
     //--------------------------------- Edit Product Action ---------------------------------------------------------
+    
+    // $('#table_product').on('click',".btn-warning.btn-rounded.product-edit",function(){
+    //     alert("you click")
+
+    // })
+    
     function editProductButton() {
-        // event listener for remove row putton
+        // event listener for remove row button
         $("#table_product").on(
             "click",
-            ".btn-warning.btn-rounded.edit",
+            ".btn-warning.btn-rounded.product-edit",
             function() {
                 var currentRow = $(this).closest("tr");
                 // get all value in row

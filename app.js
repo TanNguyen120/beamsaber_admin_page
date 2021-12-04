@@ -4,6 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const bodyParser = require('body-parser');
+const passport = require('./components/auth/passport');
+const session = require("express-session");
 
 //---------------------------------------- app define router ----------------------------------------------------------
 
@@ -25,24 +28,48 @@ const searchRouter = require("./components/search_bar/index");
 // define account router
 const accountRouter = require("./components/account/index");
 
+// define register router
+const registerRouter = require("./components/auth/register_router");
+
+// define login router
+const loginRouter = require("./components/auth/login_router");
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//-------------------------------- middleware use -----------------------------------------------------------------------
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
+// this middleware will parse the http request to json object
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+
+// use session middle ware with it secret key so we have a secure session id to transfer to client
+app.use(session({
+  secret: process.env.SESSION_SECRET, resave: true,
+  saveUninitialized: false,
+}));
+
+// two middle ware below are use to check if user were logged in or not
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(function(req, res, next) {
+  // if the user is authenticated when he or she send HTTP req there a cookie in there have the info of user
+  // so in this middleware we capture that info and send back to the client
+  res.locals.user = req.user;  
+  //res.locals.authenticated = !req.user.anonymous;
+  next();
+});
+
+/////////////////////////////////////////////////////////////////////////////////////
+// ROUTING  MIDDLEWARE GO HERE
 // middleware for adminIndexPage
 app.use("/", adminRouter);
 
@@ -58,13 +85,21 @@ app.use("/accounts", accountsRouter);
 // use middleware for account tasks
 app.use("/account", accountRouter);
 
+// use middleware for searching
+app.use("/search",searchRouter);
+
+//routing for add admin account
+app.use("/register",registerRouter);
+
+//login routing
+app.use("/login",loginRouter);
 //default find by id form
 app.get("/find_by_id_form",(req, res, next)=>{
   res.render("find_form");
 } )
 
-// use middleware for searching
-app.use("/search",searchRouter);
+
+
 
 
 // catch 404 and forward to error handler
