@@ -19,7 +19,7 @@ exports.updateAccount = (
         password: userPassword,
         address: userAddress,
         phone: userPhone,
-        bank_account:userBankAccount,
+        bank_account: userBankAccount,
         role: userRole
     }, { where: { user_id: userId } });
 };
@@ -28,9 +28,23 @@ exports.updateAccount = (
 
 //-------------------------------------------------------------------------------------------------------------------------------
 
-exports.removeAccount =(accountId)=>{
-    console.log("Removing account: " + accountId);
+exports.removeAccount = (accountId) => {
+    console.log("Removing account: " + accountId); 1
     models.user.destroy({
         where: { user_id: accountId },
     })
+}
+
+
+exports.findUser = (userId) => {
+    return models.user.findByPk(userId, { raw: true });
+}
+
+exports.updateUser = (userId, userPhone, userAddress, userBankAccount) => {
+    return models.user.update(
+        {
+            phone: userPhone, address: userAddress,
+            bank_account: userBankAccount
+        },
+        { where: { user_id: userId } });
 }

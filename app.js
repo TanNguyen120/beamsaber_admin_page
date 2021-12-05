@@ -11,28 +11,30 @@ const session = require("express-session");
 //---------------------------------------- app define router ----------------------------------------------------------
 
 // define admin router
-const adminRouter = require("./components/admin/index");
+const adminRouter = require("./components/admin");
 
 // define product router in component folder
-const productRouter = require("./components/product/index");
+const productRouter = require("./components/product");
 
 // define router products
-const productsRouter = require("./components/products/index");
+const productsRouter = require("./components/products");
 
 // define accounts router
-const accountsRouter = require("./components/accounts/index");
+const accountsRouter = require("./components/accounts");
 
 // define search router
-const searchRouter = require("./components/search_bar/index");
+const searchRouter = require("./components/search_bar");
 
 // define account router
-const accountRouter = require("./components/account/index");
+const accountRouter = require("./components/account");
 
 // define register router
 const registerRouter = require("./components/auth/register_router");
 
 // define login router
 const loginRouter = require("./components/auth/login_router");
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // view engine setup
@@ -60,10 +62,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   // if the user is authenticated when he or she send HTTP req there a cookie in there have the info of user
   // so in this middleware we capture that info and send back to the client
-  res.locals.user = req.user;  
+  res.locals.user = req.user;
   //res.locals.authenticated = !req.user.anonymous;
   next();
 });
@@ -86,29 +88,29 @@ app.use("/accounts", accountsRouter);
 app.use("/account", accountRouter);
 
 // use middleware for searching
-app.use("/search",searchRouter);
+app.use("/search", searchRouter);
 
 //routing for add admin account
-app.use("/register",registerRouter);
+app.use("/register", registerRouter);
 
 //login routing
-app.use("/login",loginRouter);
+app.use("/login", loginRouter);
 //default find by id form
-app.get("/find_by_id_form",(req, res, next)=>{
+app.get("/find_by_id_form", (req, res, next) => {
   res.render("find_form");
-} )
+})
 
 
 
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

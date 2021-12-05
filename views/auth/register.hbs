@@ -1,57 +1,74 @@
-<div class="main-content main-content-login">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="breadcrumb-trail breadcrumbs">
-          <ul class="trail-items breadcrumb">
-            <li class="trail-item trail-begin">
-              <a href="/">Home</a>
+<div class='main-content main-content-login'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='breadcrumb-trail breadcrumbs'>
+          <ul class='trail-items breadcrumb'>
+            <li class='trail-item trail-begin'>
+              <a href='/'>Home</a>
             </li>
-            <li class="trail-item trail-end active">
+            <li class='trail-item trail-end active'>
               Authentication
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="site-main">
-          <h3 class="custom_blog_title">
+    <div class='row'>
+      <div class='content-area col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <div class='site-main'>
+          <h3 class='custom_blog_title'>
             Authentication
           </h3>
-          <div class="customer_login">
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <h3 style="color:red">{{message}}</h3>
-                <div class="login-item">
-                  <h5 class="title-login">Register Another Admin</h5>
-                  <h6  class="title-login">please enter necessary information below</h6>
-                  <form class="register" method="POST" action="/register">
-                    <p class="form-row form-row-wide">
-                      <label class="text">email</label>
-                      <input title="email" type="email" class="input-text" name="email" />
+          <div class='customer_login'>
+            <div class='row'>
+              <div class='col-lg-6 col-md-6 col-sm-12'>
+                <h3 style='color:red'>{{message}}</h3>
+                <div class='login-item'>
+                  <h5 class='title-login'>Register Another Admin</h5>
+                  <h6 class='title-login'>please enter necessary information
+                    below</h6>
+                  <form class='register' method='POST' action='/register'>
+                    <p class='form-row form-row-wide'>
+                      <label class='text'>email</label>
+                      <input
+                        title='email'
+                        type='email'
+                        class='input-text'
+                        name='email'
+                      />
                     </p>
-                    <p class="form-row form-row-wide">
-                      <label class="text">Username</label>
-                      <input title="name" type="text" class="input-text" name="name" placeholder="don't use real name"/>
+                    <p class='form-row form-row-wide'>
+                      <label class='text'>Username</label>
+                      <input
+                        title='name'
+                        type='text'
+                        class='input-text'
+                        name='name'
+                        placeholder="don't use real name"
+                      />
                     </p>
-                    <p class="form-row form-row-wide">
-                      <label class="text">Password</label>
-                      <input title="pass" type="password" class="input-text" name="password" />
+                    <p class='form-row form-row-wide'>
+                      <label class='text'>Password</label>
+                      <input
+                        title='pass'
+                        type='password'
+                        class='input-text'
+                        name='password'
+                      />
                     </p>
-                    <p class="form-row">
-                      <span class="inline">
-                        <input type="checkbox" id="cb2" />
-                        <label for="cb2" class="label-text">I agree to
+                    <p class='form-row'>
+                      <span class='inline'>
+                        <input type='checkbox' id='cb2' />
+                        <label for='cb2' class='label-text'>I agree to
                           <span>Terms & Conditions</span></label>
                       </span>
                     </p>
-                    <p class="">
+                    <p class=''>
                       <input
-                        type="submit"
-                        class="button-submit"
-                        value="Register Now"
+                        type='submit'
+                        class='button-submit'
+                        value='Register Now'
                       />
                     </p>
                   </form>

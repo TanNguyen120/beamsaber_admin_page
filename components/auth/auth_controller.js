@@ -17,7 +17,7 @@ exports.registerUser = async function (req, res) {
             // if email is already use respond error
             const user = await authService.findEmail(email);
             if (user) {
-                res.render("./login_and_register/index", { message: "your email is already in use" });
+                res.render("./auth/register", { message: "your email is already in use" });
                 throw new Error("duplicate email")
             }
             else {
@@ -29,10 +29,10 @@ exports.registerUser = async function (req, res) {
                 const newId = lastId.id + 1;
                 try {
                     // CREATE USER CODE HERE
-                    const newUser = await authService.createAdmin(newId, name, email,hashPassword);
-                    res.render("./login_and_register/index", { message: "success register" })
+                    const newUser = await authService.createAdmin(newId, name, email, hashPassword);
+                    res.render("./auth/register", { message: "success register" })
                 } catch (err) {
-                    res.render("./login_and_register/index", { message: "cant register" })
+                    res.render("./auth/register", { message: "cant register" })
                     throw err;
                 }
             }

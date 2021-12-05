@@ -18,7 +18,7 @@ const productService = require("./productService");
  * @param {*} req
  * @param {*} res
  */
-exports.postProductTable = async function(req, res) {
+exports.postProductTable = async function (req, res) {
     const page = parseInt(req.body.page);
     console.log(" client want find items in page: " + page);
     if (isNaN(page) && page > 0) {
@@ -38,7 +38,7 @@ exports.postProductTable = async function(req, res) {
  * @param {*} req
  * @param {*} res
  */
-exports.deleteProductWithID = async function(req, res) {
+exports.deleteProductWithID = async function (req, res) {
     const id = parseInt(req.body.product_id);
     console.log("id is: " + id);
     if (!isNaN(id)) {
@@ -58,7 +58,7 @@ exports.deleteProductWithID = async function(req, res) {
  * @param {*} req
  * @param {*} res
  */
-exports.findProductById = async function(req, res) {
+exports.findProductById = async function (req, res) {
     const id = req.query.product_id;
     console.log("id is " + id);
     if (!isNaN(id)) {
@@ -80,7 +80,7 @@ exports.findProductById = async function(req, res) {
  * @param {*} req.body : //search_with// is filter type, //value// is the value for product service to search, //page// is for pagination
  * @param {*} res
  */
-exports.findProductWithCondition = async(req, res) => {
+exports.findProductWithCondition = async (req, res) => {
     const searchCond = req.body.search_with;
     const value = req.body.value;
     console.log(
@@ -111,7 +111,7 @@ exports.findProductWithCondition = async(req, res) => {
  * @param {*} res
  * return false if there no items in data base to edit
  */
-exports.editProductWithPostValue = async function(req, res) {
+exports.editProductWithPostValue = async function (req, res) {
     const id = parseInt(req.body.product_id);
     const name = req.body.name;
     const grade = req.body.eGrade;
@@ -158,7 +158,7 @@ exports.editProductWithPostValue = async function(req, res) {
  * @param {*} req
  * @param {*} res
  */
-exports.addProductTextInfo = async function(req, res) {
+exports.addProductTextInfo = async function (req, res) {
     const id = parseInt(req.body.product_id);
     const name = req.body.name;
     const GundamGrade = req.body.grade;
@@ -171,28 +171,33 @@ exports.addProductTextInfo = async function(req, res) {
 
     if (!isNaN(id) && !isNaN(price)) {
         /** add product return two object, created indicate that if product is created or not */
-        const [product, created] = await productService.addProduct(
-            id,
-            name,
-            GundamGrade,
-            universe,
-            description,
-            price,
-            link_picture,
-        );
-        if (!created) {
-            res.end(
-                "fails: there already exists a product with the same id = " +
-                id +
-                " with name = " +
-                name
+        try {
+            const [product, created] = await productService.addProduct(
+                id,
+                name,
+                GundamGrade,
+                universe,
+                description,
+                price,
+                link_picture,
             );
-        } else {
+            if (!created) {
+                res.end(
+                    "fails: there already exists a product with the same id = " +
+                    id +
+                    " with name = " +
+                    name
+                );
+            }
             res.end("success");
+
+        } catch (err) {
+            console.log("ERR while querying: " + err.message);
+            res.end("there some thing wrong with the operation")
+            throw err
         }
-    } else {
-        res.end("fails: please insert number to id and price");
     }
+
 };
 
 // --------------------------------------------------------------------------------------------------------------

@@ -7,14 +7,16 @@ const accountController = require("./accountController");
 
 //----------------------------------------------------------------------------------
 router.get('/resource', (req, res) => {
-    res.render("./account/account_find_form",{title:"Find User By ID"})
+    res.render("./account/account_find_form", { title: "Find User By ID" })
 })
 
-router.post("/resource" ,accountController.editAccount);
+router.post("/resource", accountController.editAccount);
 
-router.get("/resource/:id");
+router.get("/:id/profile", accountController.userProfile);
 
-router.delete("/resource/:id" ,accountController.removeAccount);
+router.post("/:id/profile", accountController.updateProfile);
+
+router.delete("/resource/:id", accountController.removeAccount);
 
 
 module.exports = router;
