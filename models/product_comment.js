@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     product_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'product',
         key: 'product_id'
@@ -12,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'user',
         key: 'user_id'
@@ -30,6 +32,15 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'product_comment',
     timestamps: false,
     indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "product_id" },
+          { name: "user_id" },
+        ]
+      },
       {
         name: "user_comment_idx",
         using: "BTREE",
