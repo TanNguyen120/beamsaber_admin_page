@@ -7,6 +7,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const passport = require('./components/auth/passport');
 const session = require("express-session");
+const auth = require("./components/auth/auth_checking");
+
 
 //---------------------------------------- app define router ----------------------------------------------------------
 
@@ -33,6 +35,9 @@ const registerRouter = require("./components/auth/register_router");
 
 // define login router
 const loginRouter = require("./components/auth/login_router");
+
+// define order router
+const orderRouter = require("./components/order");
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,30 +81,33 @@ app.use(function (req, res, next) {
 app.use("/", adminRouter);
 
 // middleware for productlist task
-app.use("/product", productRouter);
+app.use("/product", auth.isAuth, productRouter);
 
 // use middleware for products
-app.use("/products", productsRouter);
+app.use("/products", auth.isAuth, productsRouter);
 
 // use middleware for accounts tasks
-app.use("/accounts", accountsRouter);
+app.use("/accounts", auth.isAuth, accountsRouter);
 
 // use middleware for account tasks
-app.use("/account", accountRouter);
+app.use("/account", auth.isAuth, accountRouter);
 
 // use middleware for searching
-app.use("/search", searchRouter);
+app.use("/search", auth.isAuth, searchRouter);
 
 //routing for add admin account
-app.use("/register", registerRouter);
+app.use("/register", auth.isAuth, registerRouter);
 
 //login routing
 app.use("/login", loginRouter);
+
 //default find by id form
 app.get("/find_by_id_form", (req, res, next) => {
   res.render("find_form");
 })
 
+// order router
+app.use("/order", orderRouter);
 
 
 
