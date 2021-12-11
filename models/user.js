@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     account_status: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING(20),
       allowNull: true
     }
   }, {

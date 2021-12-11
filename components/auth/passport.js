@@ -22,8 +22,8 @@ passport.use(new LocalStrategy(
             console.log("user.id: " + user.user_id);
 
             // with admin page we have to check role too
-            if(user.role != 'admin'){
-                return done(null, false, { message: 'Wrong username'})
+            if (user.role != 'admin') {
+                return done(null, false, { message: 'Wrong username' })
             }
 
             const mathPassword = await checkPassword(user, password)
@@ -31,6 +31,10 @@ passport.use(new LocalStrategy(
                 return done(null, false, { message: 'Incorrect password.' });
             }
             console.log("found this user: " + JSON.stringify(user));
+
+            if (user.account_status === 'ban') {
+                return done(null, false, { message: "you are baned" });
+            }
             return done(null, user);
 
         } catch (err) {

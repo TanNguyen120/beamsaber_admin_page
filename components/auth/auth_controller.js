@@ -30,7 +30,7 @@ exports.registerUser = async function (req, res) {
                 try {
                     // CREATE USER CODE HERE
                     const newUser = await authService.createAdmin(newId, name, email, hashPassword);
-                    res.render("./auth/register", { message: "success register" })
+                    res.render("./auth/register", { message: "register succeeded" })
                 } catch (err) {
                     res.render("./auth/register", { message: "cant register" })
                     throw err;

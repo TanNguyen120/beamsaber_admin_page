@@ -26,6 +26,14 @@ module.exports = function(sequelize, DataTypes) {
     total_cost: {
       type: DataTypes.FLOAT,
       allowNull: true
+    },
+    order_id: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+      references: {
+        model: 'order',
+        key: 'order_id'
+      }
     }
   }, {
     sequelize,
@@ -46,6 +54,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "product_id" },
+        ]
+      },
+      {
+        name: "FK_cart_item_order_idx",
+        using: "BTREE",
+        fields: [
+          { name: "order_id" },
         ]
       },
     ]

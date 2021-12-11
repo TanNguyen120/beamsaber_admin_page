@@ -12,13 +12,14 @@ exports.editAccount = async (req, res) => {
     const bank_account = req.body.bank_account;
     const role = req.body.role;
     const address = req.body.address;
+    const status = req.body.status;
 
     console.log("client edit: " + user_id + " " + name + " " + email + " " + password + " " + phone + " " + bank_account + " " + role + " " + address);
     if (isNaN(user_id)) {
         res.status(400).send("bad request: id is not a number");
     }
     else {
-        accountService.updateAccount(user_id, name, email, password, address, phone, bank_account, role);
+        accountService.updateAccount(user_id, name, email, password, address, phone, bank_account, role, status);
         res.send("success")
     }
 
@@ -28,7 +29,13 @@ exports.removeAccount = async (req, res) => {
     const user_id = parseInt(req.params.id);
     console.log("client want delete account with id: " + user_id);
     if (isNaN(user_id)) {
-        res.status(400).send({ message: "bad request: user_id is not a number" })
+        res.status(400).render("error", { message: "bad request: user_id is not a number" })
+    }
+
+    if (user_id === parseInt(req.user.user_id)) {
+
+        res.send("SUICIDE IS BAD. DONT DO IT. /n You are trying to delete your own account");
+
     }
     else {
         accountService.removeAccount(user_id);
@@ -63,7 +70,7 @@ exports.updateProfile = async (req, res) => {
     console.log('updating: ' + id + ' to ' + phoneNumber + ' ' + address + ' ' + bankAccount);
     try {
         const userprofile = await accountService.updateUser(id, phoneNumber, address, bankAccount);
-        res.redirect('./login');
+        res.redirect('/');
         console.log('success update');
     } catch (err) {
         res.render('error', { message: "cant update your account" })

@@ -25,6 +25,7 @@
             <th class='text-center'>Account status</th>
             <th class='text-center'>Edit</th>
             <th class='text-center'>Remove</th>
+
           </tr>
         </thead>
         <tbody>
@@ -34,18 +35,20 @@
                 class='pt-3-half idCell'
                 contenteditable='false'
               >{{user_id}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{name}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{email}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{password}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{phone}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{address}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{bank_account}}</td>
-              <td class='pt-3-half' contenteditable='true'>{{role}}</td>
+              <td class='pt-3-half' contenteditable='false'>{{name}}</td>
+              <td class='pt-3-half' contenteditable='false'>{{email}}</td>
+              <td class='pt-3-half' contenteditable='false'>{{password}}</td>
+              <td class='pt-3-half' contenteditable='false'>{{phone}}</td>
+              <td class='pt-3-half' contenteditable='false'>{{address}}</td>
+              <td
+                class='pt-3-half'
+                contenteditable='false'
+              >{{bank_account}}</td>
+              <td class='pt-3-half' contenteditable='false'>{{role}}</td>
               <td
                 class='pt-3-half'
                 contenteditable='true'
               >{{account_status}}</td>
-
               <td class='table-warning'>
                 <span class='table-edit'><button
                     type='button'
@@ -81,7 +84,7 @@
               <a href='?page=5' class='page-numbers'>5</a>
               <div class='page-numbers' id='next_page'><i
                   class='icon fa fa-angle-right'
-                  aria-hidden='true'
+                  aria-hidden='false'
                 ></i>
               </div>
               <div id='currpageVar' style='display: none'> {{pagePass}} </div>

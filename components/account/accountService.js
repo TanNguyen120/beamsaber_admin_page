@@ -11,7 +11,8 @@ exports.updateAccount = (
     userAddress,
     userPhone,
     userBankAccount,
-    userRole
+    userRole,
+    userStatus
 ) => {
     models.user.update({
         name: userName,
@@ -20,7 +21,8 @@ exports.updateAccount = (
         address: userAddress,
         phone: userPhone,
         bank_account: userBankAccount,
-        role: userRole
+        role: userRole,
+        account_status: userStatus
     }, { where: { user_id: userId } });
 };
 
