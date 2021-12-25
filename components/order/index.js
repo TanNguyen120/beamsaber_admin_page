@@ -5,6 +5,9 @@ const orderController = require("./orderController");
 router.get("/", orderController.ordersTable);
 
 
+router.post("/", orderController.editStatus);
+
+
 
 
 module.exports = router;

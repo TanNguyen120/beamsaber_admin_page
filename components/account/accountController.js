@@ -14,7 +14,7 @@ exports.editAccount = async (req, res) => {
     const address = req.body.address;
     const status = req.body.status;
 
-    console.log("client edit: " + user_id + " " + name + " " + email + " " + password + " " + phone + " " + bank_account + " " + role + " " + address);
+
     if (isNaN(user_id)) {
         res.status(400).send("bad request: id is not a number");
     }

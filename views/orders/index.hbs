@@ -4,7 +4,7 @@
     ALL PRODUCT TABLE
   </h3>
   <div class='card-body'>
-    <div id='table_product' class='table-editable'>
+    <div id='orderTable' class='table-editable'>
       <span class='table-add float-right mb-3 mr-2'><a
           href='#!'
           class='text-success'
@@ -15,13 +15,11 @@
         <thead>
           <tr>
             <th class='text-center'>Order id: </th>
-            <th class='text-center'>User id: </th>
+            <th class='text-center'>User name: </th>
             <th class='text-center'>Date</th>
             <th class='text-center'>Status</th>
             <th class='text-center'>Total cost: </th>
-            <th class='text-center'>Edit</th>
-            <th class='text-center'>Remove</th>
-
+            <th class='text-center'>Edit Status</th>
           </tr>
         </thead>
         <tbody>
@@ -36,18 +34,9 @@
                 <span class='table-edit'>
                   <button
                     type='button'
-                    class='btn-warning btn-rounded product-edit'
+                    class='btn-warning btn-rounded orderEdit'
                   >
                     <i class='bi bi-pencil-square'></i>
-                  </button>
-                </span>
-              </td>
-              <td class='table-danger'>
-                <span class='table-remove'><button
-                    type='button'
-                    class='btnRemoveProduct'
-                  >
-                    <i class='bi-trash'></i>
                   </button>
                 </span>
               </td>

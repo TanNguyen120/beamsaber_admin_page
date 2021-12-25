@@ -1206,7 +1206,7 @@ jQuery(document).ready(function ($) {
             "click",
             ".btn-warning.btn-rounded.product-edit",
             function () {
-                var currentRow = $(this).closest("tr");
+                const currentRow = $(this).closest("tr");
                 // get all value in row
                 const product_id = currentRow.find("td:eq(0)").text();
                 const name = currentRow.find("td:eq(1)").text();
@@ -1377,7 +1377,30 @@ jQuery(document).ready(function ($) {
     }
 
 
+    //-------------------------------------------- edit order status ----------------------------------------------------
+    function editOrderStatus() {
+        const editButton = $(".btn-warning.btn-rounded.orderEdit");
+        $("#orderTable").on(
+            "click",
+            ".btn-warning.btn-rounded.orderEdit",
+            function () {
+                // get order id and status of this row
+                const currentRow = $(this).closest("tr");
+                const order_id = currentRow.find("td:eq(0)").text();
+                const status = currentRow.find("td:eq(3)").text();
 
+                $.post(
+                    "/order/", { order_id, status },
+                    function (result) {
+                        alert("edit product: " + result);
+                        if (result == "success") {
+                            location.reload(true);
+                        }
+                    }
+                );
+
+            });
+    }
 
     // ------------------------------------------------------------------------------------------------------------------
     $(window).scroll(function () {
@@ -1427,5 +1450,5 @@ jQuery(document).ready(function ($) {
     prevpage_click_filter();
     editAccountButton();
     delete_account();
-
+    editOrderStatus();
 });
