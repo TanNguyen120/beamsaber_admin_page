@@ -50,3 +50,5 @@ exports.updateUser = (userId, userPhone, userAddress, userBankAccount) => {
         },
         { where: { user_id: userId } });
 }
+
+

@@ -6,18 +6,18 @@ exports.showInfo = async (req, res) => {
         const productsNumber = await pageService.countProduct();
 
         // find and count all order
-        const order = await pageService.countOrder();
-        const numberOfOrder = order.count;
-        let totalEarn = 0;
+        const orders = await pageService.countOrder();
 
-        // loop through the rows of order to sum all total_cost
-        for (let i = 0; i < numberOfOrder; i++) {
-            totalEarn += order.rows[i].total_cost;
-        }
-        // round the number to 2 decimal
-        totalEarn = totalEarn.toFixed(2);
+        const numberOfOrder = orders.count;
 
-        res.render('./index', { productsNumber, numberOfOrder, totalEarn });
+        const topSellProduct = await pageService.getProductsCount();
+
+        const totalEarn = pageService.calculateTotalEarn(orders);
+
+        const topSellProductInfo = await pageService.topSellProductInfo(topSellProduct);
+
+
+        res.render('./index', { productsNumber, numberOfOrder, totalEarn, topSellProductInfo });
     } catch (err) {
         res.send("some thing went wrong");
         throw err;
