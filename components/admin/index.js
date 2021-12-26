@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const pageController = require('./mainPageController');
 
 
-router.get('/', function(req, res){
-    res.render('index', {title: "admin beamsaber"});
-});
+router.get('/', pageController.showInfo);
 
 
 module.exports = router;
