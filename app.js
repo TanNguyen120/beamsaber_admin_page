@@ -39,6 +39,9 @@ const loginRouter = require("./components/auth/login_router");
 // define order router
 const orderRouter = require("./components/order");
 
+// reports router
+const reportsRouter = require("./components/report");
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,6 +111,9 @@ app.get("/find_by_id_form", (req, res, next) => {
 
 // order router
 app.use("/order", orderRouter);
+
+//
+app.use("/report", reportsRouter);
 
 
 

@@ -254,6 +254,27 @@
                                         </ul>
                     
                                 </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="#" class="tanajil-menu-item-title" title="Post Layout">Report</a>
+                                        <span class="toggle-submenu"></span>
+                                        <ul class="submenu">
+                                            <li class="menu-item">
+                                                <a href="/report">Year</a>
+                                                <span class="toggle-submenu"></span>
+                                                 <ul class="submenu">
+                                                     {{#each distinctYears}}
+                                                        <li class="menu-item">
+                                                            <a href="/report/year/{{this}}" class="tanajil-menu-item-title">{{this}}</a>
+                                                        </li>
+                                                    {{/each}}
+                                                 </ul>
+                                            </li>
+                                             <li class="menu-item">
+                                                <a href="/register" class="tanajil-menu-item-title">Register Admin Account</a>
+                                            </li>
+                                        </ul>
+                    
+                                </li>
                     {{else}}
                         <h3 style="color:red"> Please <span style="color:white"> <a href="/login"> LOGIN </a> </span> To Use Web Features </h3>
                                     

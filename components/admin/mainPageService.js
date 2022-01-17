@@ -49,8 +49,9 @@ exports.calculateTotalEarn = (orders) => {
     return totalEarn;
 }
 
+//--------------------------------------------------------------------------------------------------------------
 
-// find the details of product from topSellProduct
+// find the details of product from topSellProduct, return a list of objects
 exports.topSellProductInfo = async (topSellProduct) => {
     let topSellProductInfo = new Array;
 
@@ -66,4 +67,28 @@ exports.topSellProductInfo = async (topSellProduct) => {
         topSellProductInfo.push(productInfoCount);
     }
     return topSellProductInfo;
+}
+
+
+//--------------------------------------------------------------------------------------------------------------
+
+exports.findYears = () => {
+    return models.order.findAll({
+        attributes: [[sequelize.fn('YEAR', sequelize.col('DATE')), 'YEAR']],
+        raw: true
+    });
+}
+
+//--------------------------------------------------------------------------------------------------------------
+
+// find distinct years from list of years
+exports.distinctYears = (years) => {
+    const distinctYears = new Array;
+    for (let index = 0; index < years.length; index++) {
+        const element = years[index].YEAR;
+        if (distinctYears.indexOf(element) === -1) {
+            distinctYears.push(element);
+        }
+    }
+    return distinctYears;
 }
